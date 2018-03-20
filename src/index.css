@@ -3,3 +3,90 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post-item {
+  position: relative;
+  width: 500px;
+  height: 150px;
+  margin: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.post-title {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.post-author {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+}
+
+.post-category {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 0px;
+  left: 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  font-size: 0;
+}
+
+.post-category-react {
+  background-image: url('./icons/react-icon.svg');
+}
+
+.post-category-udacity {
+  background-image: url('./icons/udacity-icon.svg');
+}
+
+.post-category-redux {
+  background-image: url('./icons/redux-icon.svg');
+}
+
+.post-comments {
+  position:absolute;
+  right: 70px;
+  bottom: 25px;
+  font-size: 20px;
+}
+
+.post-comments-count {
+  position:absolute;
+  right: 55px;
+  bottom: 12px;
+  font-size: 14px;
+} 
+.post-upvote {
+  position:absolute;
+  cursor:pointer;
+  right: 7px;
+  bottom: 24px;
+  font-size: 20px;
+}
+
+.post-votes-count {
+  position:absolute;
+  right: 20px;
+  bottom: 12px;
+  font-size: 14px;
+} 
+
+.post-downvote {
+  position:absolute;
+  cursor:pointer;
+  right: 7px;
+  bottom: 1px;
+  font-size: 20px;
+}
