@@ -25,7 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     ReadableAPI.getAllPosts().then(posts => {
-      //console.log(posts);
+      console.log(posts);
       this.setState({ posts });
     });
     // ReadableAPI.getPostsByCategory('react').then(categories => {

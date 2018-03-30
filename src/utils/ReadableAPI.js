@@ -14,105 +14,79 @@ const headersWithContentType = {
   ...headers,
   'Content-Type': 'application/json'
 }
-export const getAllCategories = () =>
-  fetch(`${api}/categories`, { headers })
-    .then(res => res.json());
+export const getAllCategories = () => get(`${api}/categories`);
 
 export const getPostsByCategory = category =>
-  fetch(`${api}/${category}/posts`, { headers })
-    .then(res => res.json())
-    .then(posts => posts.filter(post => !post.deleted));
+  get(`${api}/${category}/posts`)
+    .then(posts => posts.filter(post => !post || !post.deleted));
 
 export const getAllPosts = () =>
-  fetch(`${api}/posts`, { headers })
-    .then(res => res.json())
+  get(`${api}/posts`)
     .then(posts => posts.filter(post => !post.deleted));
     
-export const addPost = post =>
-  fetch(`${api}/posts`, {
-    method: 'POST',
-    headers: headersWithContentType,
-    body: JSON.stringify({ post })
-  }).then(res => res.json());
+export const addPost = post => fetchPost(`${api}/posts`, { post });
 
-const voteForPost = (post, vote) =>
-  fetch(`${api}/posts/${post.id}`, {
-    method: 'POST',
-    headers: headersWithContentType,
-    body: JSON.stringify({ option: vote })
-  }).then(res => res.json());
+const voteForPost = (post, vote) => fetchPost(`${api}/posts/${post.id}`, { option: vote });
 
-export const upVoteForPost = post =>
-  voteForPost(post, 'upVote');
+export const upVoteForPost = post => voteForPost(post, 'upVote');
 
-export const downVoteForPost = post =>
-  voteForPost(post, 'downVote');
+export const downVoteForPost = post => voteForPost(post, 'downVote');
 
-export const getPost = post => {
-  fetch(`${api}/posts/${post.id}`)
-    .then(res => res.json());
-}
+export const getPost = post => get(`${api}/posts/${post.id}`);
 
 export const editPost = post =>
-  fetch(`${api}/posts/${post.id}`, {
-    method: 'PUT',
-    headers: headersWithContentType,
-    body: JSON.stringify({ 
-          title: post.title, 
-          body: post.body 
-        }
-      )
-  }).then(res => res.json());
+  fetchPut(`${api}/posts/${post.id}`, {
+    title: post.title,
+    body: post.body
+  });
 
-export const deletePost = post =>
-  fetch(`${api}/posts/${post.id}`, {
-    method: 'DELETE',
-    headers
-  }).then(res => res.json());
+export const deletePost = post => fetchDelete (`${api}/posts/${post.id}`);
 
-export const getComments = post =>
-  fetch(`${api}/posts/${post.id}/comments`)
-    .then(res => res.json());
+export const getComments = post => get(`${api}/posts/${post.id}/comments`);
 
 export const addComment = (post, comment) =>
-  fetch(`${api}/comments`, {
-    method: 'POST',
-    headers: headersWithContentType,
-    body: JSON.stringify({ 
-      ...comment,
-      parentId: post.id
-    })
-  }).then(res => res.json());
+  fetchPost(`${api}/comments`, {
+    ...comment,
+    parentId: post.id
+  });
 
-export const getCommentDetails= comment =>
-  fetch(`${api}/comments/${comment.id}`)
-    .then(res => res.json());
+export const getCommentDetails= comment => get(`${api}/comments/${comment.id}`);
 
-const voteForComment = (comment, vote) =>
-  fetch(`${api}/comments/${comment.id}`, {
-    method: 'POST',
-    headers: headersWithContentType,
-    body: JSON.stringify({ option: vote })
-  }).then(res => res.json());
+export const upVoteForComment = comment => voteForComment(comment, 'upVote');
 
-export const upVoteForComment = comment =>
-  voteForComment(comment, 'upVote');
-
-export const downVoteForComment = comment =>
-  voteForComment(comment, 'downVote');
+export const downVoteForComment = comment => voteForComment(comment, 'downVote');
 
 export const editComment = comment =>
-  fetch(`${api}/comments/${comment.id}`, {
-    method: 'PUT',
-    headers: headersWithContentType,
-    body: JSON.stringify({ 
-      timestamp: Date.now(),
-      body: comment.body
-    })
-  }).then(res => res.json());
+  fetchPut(`${api}/comments/${comment.id}`, {
+    timestamp: Date.now(),
+    body: comment.body
+  });
 
-export const deleteComment = comment =>
-  fetch(`${api}/comments/${comment.id}`, {
+export const deleteComment = comment => fetchDelete(`${api}/comments/${comment.id}`)
+
+// Private methods
+
+const voteForComment = (comment, vote) =>
+  fetchPost(`${api}/comments/${comment.id}`, { option: vote });
+
+const get = url => fetch(url, { headers }).then(res => res.json());
+
+const fetchDelete = url => 
+  fetch(url, {
     method: 'DELETE',
     headers
-  }).then(res => res.json())
+  }).then(res => res.json());
+
+const fetchPost = (url, body) =>
+  fetch(url, {
+    method: 'POST',
+    headers: headersWithContentType,
+    body: JSON.stringify(body)
+  }).then(res => res.json());
+
+const fetchPut = (url, body) =>
+  fetch(url, {
+    method: 'PUT',
+    headers: headersWithContentType,
+    body: JSON.stringify(body)
+  }).then(res => res.json());
