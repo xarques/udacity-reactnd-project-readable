@@ -4,11 +4,20 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const defaultState = {
+  posts: []
+}
+const store = createStore(
+  reducer,
+  defaultState,
+  composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,4 +26,7 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'));
+
 registerServiceWorker();
+
+export default store;

@@ -4,6 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+h1 {
+  font-size: 40px;
+  color: blue;
+}
+
+.header {
+  text-align: center;
+}
+
 .post-list {
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +76,7 @@ body {
   right: 55px;
   bottom: 12px;
   font-size: 14px;
-} 
+}
 .post-upvote {
   position:absolute;
   cursor:pointer;
@@ -81,7 +90,7 @@ body {
   right: 20px;
   bottom: 12px;
   font-size: 14px;
-} 
+}
 
 .post-downvote {
   position:absolute;

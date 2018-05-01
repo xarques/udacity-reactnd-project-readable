@@ -1,13 +1,19 @@
 import {
   ADD_POST,
+  GET_POSTS,
   REMOVE_POST,
   ADD_COMMENT_TO_POST,
   REMOVE_COMMENT_FROM_POST
 } from '../actions';
 
 const posts = (state = [], action) => {
-  const { post, comment } = action;
+  const { posts, post, comment } = action;
+
   switch (action.type) {
+    case GET_POSTS:
+      return {
+        posts
+      };
     case ADD_POST:
       const [ ...newState ] = state;
       newState.push(post);
