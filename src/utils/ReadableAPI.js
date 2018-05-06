@@ -2,7 +2,7 @@ const api = 'http://localhost:3001';
 
 // Generate a unique token for storing the posts data on the backend server.
 let token = localStorage.token;
-if (!token) 
+if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8);
 
 // Header for GET DELETE (no body so no need to specify the content-type)
@@ -27,14 +27,14 @@ export const getPostsByCategory = category =>
 export const getAllPosts = () =>
   fetchGet(`${api}/posts`)
     .then(posts => posts.filter(post => !post.deleted));
-    
+
 export const addPost = post => fetchPost(`${api}/posts`, { post });
 
 export const upVoteForPost = post => voteForPost(post, 'upVote');
 
 export const downVoteForPost = post => voteForPost(post, 'downVote');
 
-export const getPost = post => fetchGet(`${api}/posts/${post.id}`);
+export const getPost = postId => fetchGet(`${api}/posts/${postId}`);
 
 export const editPost = post =>
 fetchPut(`${api}/posts/${post.id}`, {
@@ -74,7 +74,7 @@ const voteForComment = (comment, vote) =>
 
 const fetchGet = url => fetch(url, { headers }).then(res => res.json());
 
-const fetchDelete = url => 
+const fetchDelete = url =>
   fetch(url, {
     method: 'DELETE',
     headers
