@@ -44,21 +44,15 @@ class App extends Component {
     const { posts } = this.props;
     console.log("App posts = ", posts);
 
-    return (
-      <div className="App">
+    return <div className="App">
         <Header />
         <Switch>
-          <Route exact path="/" render={() => <PostList posts={posts} />} />
+          <Route exact path="/:category/:postId" component={PostDetails} />
+          <Route path="/:category?" render={() => <PostList />} />
           {/* <Route exact path="/:categoryId/:postId"
             render={() => (<Post posts={posts} />)
             }
           /> */}
-          <Route
-            exact
-            path="/:categoryId/:postId"
-            component={PostDetails}
-            {...this.props}
-          />
         </Switch>
 
         {/* <PostList
@@ -67,8 +61,7 @@ class App extends Component {
           // upVote={this.upVote}
           // downVote={this.downVote}
         /> */}
-      </div>
-    );
+      </div>;
   }
 }
 

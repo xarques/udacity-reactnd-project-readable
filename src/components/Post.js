@@ -8,6 +8,7 @@ import faThumbsDown from "@fortawesome/fontawesome-free-solid/faThumbsDown";
 import faThumbsUp from "@fortawesome/fontawesome-free-solid/faThumbsUp";
 
 class Post extends Component {
+
   render() {
     const { post, fetchUpVotePost, fetchDownVotePost } = this.props;
 
@@ -20,25 +21,22 @@ class Post extends Component {
               <p className="post-author">
                 by <strong>{post.author}</strong>
               </p>
-              <p className={`post-category post-category-${post.category}`}>
-                T
-              </p>
-              <FontAwesomeIcon className="post-comments" icon={faComment} />
-              <p className="post-comments-count">{post.commentCount}</p>
-              <div onClick={e => fetchUpVotePost(post)} className="post-upvote">
-                <FontAwesomeIcon className="post-upvote" icon={faThumbsUp} />
-              </div>
-              <p className="post-votes-count">{post.voteScore}</p>
-              <div
-                onClick={e => fetchDownVotePost(post)}
-                className="post-downvote"
-              >
-                <FontAwesomeIcon
-                  className="post-downvote"
-                  icon={faThumbsDown}
-                />
-              </div>
             </Link>
+            <Link to={`/${post.category}`}>
+              <p className={`post-category post-category-${post.category}`} />
+            </Link>
+            <FontAwesomeIcon className="post-comments" icon={faComment} />
+            <p className="post-comments-count">{post.commentCount}</p>
+            <div onClick={e => fetchUpVotePost(post.id)} className="post-upvote">
+              <FontAwesomeIcon className="post-upvote" icon={faThumbsUp} />
+            </div>
+            <p className="post-votes-count">{post.voteScore}</p>
+            <div
+              onClick={e => fetchDownVotePost(post.id)}
+              className="post-downvote"
+            >
+              <FontAwesomeIcon className="post-downvote" icon={faThumbsDown} />
+            </div>
           </div>
         )}
       </div>

@@ -1,13 +1,11 @@
 import {
   ADD_POST,
   GET_POSTS,
-  REMOVE_POST,
-  ADD_COMMENT_TO_POST,
-  REMOVE_COMMENT_FROM_POST
+  DELETE_POST
 } from "../actions";
 
 export const posts = (state = [], action) => {
-  const { posts, post, comment } = action;
+  const { posts, post, postId } = action;
 
   switch (action.type) {
     case GET_POSTS:
@@ -23,23 +21,9 @@ export const posts = (state = [], action) => {
         // Add new post
         newState.push(post);
       }
-      return newState ;
-    case REMOVE_POST:
-      return state.filter(p => p.id !== post.id);
-    case ADD_COMMENT_TO_POST:
-      return state.map(p => {
-        if (p.id === post.id) {
-          p.comments.push(comment);
-        }
-        return p;
-      });
-    case REMOVE_COMMENT_FROM_POST:
-      return state.map(p => {
-        if (p.id === post.id) {
-          p.comments = p.comments.filter(c => c.id !== comment.id);
-        }
-        return p;
-      });
+      return newState;
+    case DELETE_POST:
+      return state.filter(p => p.id !== postId);
     default:
       return state;
   }
