@@ -4,6 +4,7 @@ import PostList from "./containers/PostList";
 import PostDetails from "./containers/PostDetails";
 import Header from "./components/Header";
 import CreatePost from "./containers/CreatePost";
+import EditPost from "./containers/EditPost";
 
 class App extends Component {
   // state = {
@@ -49,6 +50,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/post/create" component={CreatePost}/>
+          <Route exact path="/:category/:postId/edit" component={EditPost} />
           <Route exact path="/:category/:postId" component={PostDetails} />
           <Route path="/:category?" render={() => <PostList />} />
           {/* <Route exact path="/:categoryId/:postId"

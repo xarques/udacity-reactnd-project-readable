@@ -116,17 +116,18 @@ h1 {
   font-size: 20px;
 }
 .post-details-item {
+  margin: auto;
   position: relative;
   width: 1000px;
   height: 500px;
-  margin: 5px;
+  /* margin: 5px; */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .post-details-title {
   position: absolute;
   top: 5px;
-  left: 5px;
+  left: 15px;
   font-size: 20px;
   text-align: center;
 }
@@ -134,13 +135,13 @@ h1 {
 .post-details-author {
   position: absolute;
   top: 20px;
-  left: 10px;
+  left: 15px;
 }
 .post-details-body {
   position: absolute;
   top: 70px;
-  left: 5px;
-  font-size: 20px;
+  left: 25px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -191,6 +192,14 @@ h1 {
   bottom: 1px;
   font-size: 20px;
 }
+
+.post-create {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  font-size: 30px;
+}
+
 .categories-list {
   list-style: none;
   text-align: center;

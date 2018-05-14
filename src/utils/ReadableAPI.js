@@ -39,7 +39,7 @@ export const downVoteForPost = postId => voteForPost(postId, "downVote");
 
 export const getPost = postId => fetchGet(`${api}/posts/${postId}`);
 
-export const editPost = post =>
+export const updatePost = post =>
   fetchPut(`${api}/posts/${post.id}`, {
     title: post.title,
     body: post.body

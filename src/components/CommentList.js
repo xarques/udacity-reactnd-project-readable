@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import faComment from "@fortawesome/fontawesome-free-solid/faCommentAlt";
 import faThumbsDown from "@fortawesome/fontawesome-free-solid/faThumbsDown";
 import faThumbsUp from "@fortawesome/fontawesome-free-solid/faThumbsUp";
 

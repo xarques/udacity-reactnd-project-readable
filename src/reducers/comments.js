@@ -6,8 +6,6 @@ const removeComment = (comment, comments) =>
 const updateComment = (comment, comments) =>
   comments.map(c => c.id === comment.id ? comment : c);
 
-
-
 export const comments = (state = {}, action) => {
   const { postId, comment } = action;
   console.log("comments postId", postId);

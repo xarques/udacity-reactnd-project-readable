@@ -1,8 +1,12 @@
 import {
   ADD_POST,
   GET_POSTS,
+  UPDATE_POST,
   DELETE_POST
 } from "../actions";
+
+const updatePost = (post, posts) =>
+  posts.map(p => (p.id === post.id ? post : p));
 
 export const posts = (state = [], action) => {
   const { posts, post, postId } = action;
@@ -24,6 +28,8 @@ export const posts = (state = [], action) => {
       return newState;
     case DELETE_POST:
       return state.filter(p => p.id !== postId);
+    case UPDATE_POST:
+      return updatePost(post, state);
     default:
       return state;
   }

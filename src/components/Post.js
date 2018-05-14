@@ -21,7 +21,7 @@ class Post extends Component {
                 by <strong>{post.author}</strong>
               </p>
             </Link>
-            <Link to={`/${post.category}/${post.id}`}>
+            <Link to={`/${post.category}/${post.id}/edit`}>
               <FontAwesomeIcon className="post-edit" icon={faEdit} />
             </Link>
             <div onClick={e => deletePost(post.id)} className="post-delete">
