@@ -100,6 +100,21 @@ h1 {
   font-size: 20px;
 }
 
+.post-edit {
+  position: absolute;
+  cursor: pointer;
+  right: 30px;
+  top: 1px;
+  font-size: 20px;
+}
+
+.post-delete {
+  position: absolute;
+  cursor: pointer;
+  right: 3px;
+  top: 1px;
+  font-size: 20px;
+}
 .post-details-item {
   position: relative;
   width: 1000px;
@@ -118,8 +133,15 @@ h1 {
 
 .post-details-author {
   position: absolute;
-  top: 50px;
+  top: 20px;
   left: 10px;
+}
+.post-details-body {
+  position: absolute;
+  top: 70px;
+  left: 5px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .post-details-category {

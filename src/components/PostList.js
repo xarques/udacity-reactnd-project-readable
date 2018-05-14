@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //import PropTypes from 'prop-types';
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faPlus from "@fortawesome/fontawesome-free-solid/faPlus";
 
 import Post from "./Post";
 
@@ -19,9 +21,7 @@ class PostList extends Component {
     const {
       posts,
       category,
-      categories,
-      fetchUpVotePost,
-      fetchDownVotePost
+      categories
     } = this.props;
     const filteredPosts = this.filterPosts(posts, category);
 
@@ -39,13 +39,16 @@ class PostList extends Component {
                 {...this.props}
                 key={post.id}
                 post={post}
-                fetchUpVotePost={fetchUpVotePost}
-                fetchDownVotePost={fetchDownVotePost}
               />
             ))}
         </ul>
       }
+      <div class="post-create">
+          <Link to={"/post/create"}>
+            <FontAwesomeIcon className="post-create" icon={faPlus} />
+          </Link>
       </div>
+    </div>
     );
   }
 }

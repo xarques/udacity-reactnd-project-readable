@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import PostList from "./containers/PostList";
 import PostDetails from "./containers/PostDetails";
 import Header from "./components/Header";
+import CreatePost from "./containers/CreatePost";
 
 class App extends Component {
   // state = {
@@ -47,6 +48,7 @@ class App extends Component {
     return <div className="App">
         <Header />
         <Switch>
+          <Route exact path="/post/create" component={CreatePost}/>
           <Route exact path="/:category/:postId" component={PostDetails} />
           <Route path="/:category?" render={() => <PostList />} />
           {/* <Route exact path="/:categoryId/:postId"
