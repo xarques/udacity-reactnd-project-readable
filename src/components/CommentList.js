@@ -100,7 +100,7 @@ class CommentList extends Component {
         {postComments &&
           postComments.map(
             (comment, i) =>
-              i == editIndex
+              i === editIndex
                 ? this.renderEditComment(comment, i)
                 : this.renderComment(comment, i)
           )}

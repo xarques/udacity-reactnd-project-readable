@@ -1,5 +1,4 @@
 import * as ReadableAPI from "../utils/ReadableAPI";
-
 export const ADD_COMMENTS = "ADD_COMMENTS";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
@@ -18,12 +17,17 @@ const addComments = (postId, comments) => ({
 });
 
 export const addComment = (postId, body, author) => dispatch =>
-  ReadableAPI.addComment(postId, body, author).then(comment =>
+  ReadableAPI.addComment(postId, body, author).then(comment => {
     dispatch({
       type: ADD_COMMENT,
       postId,
       comment
-    })
+    });
+    // Update the comment counter
+    ReadableAPI.getPost(comment.parentId).then(post => {
+      dispatch({ type: "ADD_POST", post });
+    });
+  }
   );
 
 export const editComment = (commentId, body) => dispatch =>
@@ -32,12 +36,17 @@ export const editComment = (commentId, body) => dispatch =>
   );
 
 export const deleteComment = (postId, commentId) => dispatch =>
-  ReadableAPI.deleteComment(commentId).then(comment =>
+  ReadableAPI.deleteComment(commentId).then(comment => {
     dispatch({
       type: REMOVE_COMMENT,
       postId,
       comment
     })
+    // Update the comment counter
+    ReadableAPI.getPost(comment.parentId).then(post => {
+      dispatch({ type: "ADD_POST", post });
+    });
+  }
   );
 
 const updateComment = comment =>({

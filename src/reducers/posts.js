@@ -18,6 +18,7 @@ export const posts = (state = [], action) => {
       const [...newState] = state;
       // Post already exists ?
       const postIndex = newState.findIndex(p => p.id === post.id);
+
       if (postIndex >= 0) {
         // Post already exists: Update it
         newState[postIndex] = post;

@@ -8,10 +8,6 @@ const updateComment = (comment, comments) =>
 
 export const comments = (state = {}, action) => {
   const { postId, comment } = action;
-  console.log("comments postId", postId);
-  console.log("comments action", action);
-  console.log("comments state", state);
-
   const comments = postId && state[postId] ? state[postId] : action.comments;
   switch (action.type) {
     case ADD_COMMENTS:

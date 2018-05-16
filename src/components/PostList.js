@@ -17,6 +17,7 @@ class PostList extends Component {
     return posts.filter(post => post.category === category);
   }
 
+
   render() {
     const {
       posts,
@@ -24,12 +25,11 @@ class PostList extends Component {
       categories
     } = this.props;
     const filteredPosts = this.filterPosts(posts, category);
-
     return (
       <div className="my-posts">
         {categories &&
           <ul className="categories-list">
-          {categories.map(category => <li key={category.name} className="category-link"><Link to={`/${category.path}`}>{category.name}</Link></li>)}
+          {categories.map((c,i) => <li key={c.name} className="category-link"><Link className={(!category && i === 0) || (c.name === category) ? "category-active": ""} to={`/${c.path}`}>{c.name}</Link></li>)}
           </ul>
         }
         {posts &&
