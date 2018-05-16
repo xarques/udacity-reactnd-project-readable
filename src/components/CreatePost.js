@@ -17,29 +17,27 @@ class CreatePost extends Component {
 
   render() {
     const { categories } = this.props;
-    return (
-      <div className="create-post">
-        <form
-          ref="postForm"
-          className="post-form"
-          onSubmit={e => this.handleSubmit(e)}
-        >
-          <input type="text" ref="title" placeholder="title" />
-          <input type="text" ref="body" placeholder="body" />
-          <input type="text" ref="author" placeholder="author" />
-          {categories && (
-            <select className="categories-list" ref="category">
-              {categories.map((category,i) => (
-                <option key={i} value={category.name} className="category-option">
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          )}
-          <input type="submit" />
+    return <div className="post-create">
+        <form ref="postForm" className="post-create-form" onSubmit={e => this.handleSubmit(e)}>
+          <div className="post-create-author-title">
+            <input className="post-create-author" type="text" ref="author" placeholder="author" />
+            <input className="post-create-title" type="text" ref="title" placeholder="title" />
+            {categories && <select className="categories-list" ref="category">
+                {categories.map((category, i) => (
+                  <option
+                    key={i}
+                    value={category.name}
+                    className="category-option"
+                  >
+                    {category.name}
+                  </option>
+                ))}
+              </select>}
+          </div>
+          <textarea className="post-create-body" ref="body" placeholder="Your post" />
+          <input className="post-create-submit" type="submit" />
         </form>
-      </div>
-    );
+      </div>;
   }
 }
 

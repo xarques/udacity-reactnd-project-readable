@@ -264,16 +264,59 @@ h1 {
   font-size: 24px;
 }
 
-.post-create {
+.post-create-button {
   position: fixed;
   right: 25px;
   bottom: 25px;
   font-size: 30px;
 }
 
+.post-create {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 10px;
+}
+
+.post-create-form {
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.post-create-author-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.post-create-author {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.post-create-title {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.post-create-body {
+  font-size: 24px;
+  margin: 10px;
+  width: 500px;
+}
+
+.post-create-submit {
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 200px;
+  font-size: 24px;
+}
+
 .categories-list {
   list-style: none;
   text-align: center;
+  font-size: 24px;
 }
 
 .category-link {
@@ -313,9 +356,6 @@ h1 {
 
 .comment:hover .remove-comment {
   opacity: 1;
-}
-
-.comment-form input {
 }
 
 .comment-form-author {

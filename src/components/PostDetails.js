@@ -9,6 +9,7 @@ import faTrash from "@fortawesome/fontawesome-free-solid/faTrash";
 import faEdit from "@fortawesome/fontawesome-free-solid/faEdit";
 
 import CommentList from "./CommentList";
+import NoMatch from "./NoMatch";
 
 class PostDetails extends Component {
   componentDidMount = () => {
@@ -73,6 +74,7 @@ class PostDetails extends Component {
               <span className="post-details-comments-count">{post.commentCount}</span>
             </div>
           </div>}
+        {!post && <NoMatch />}
       </div>;
   }
 }

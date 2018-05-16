@@ -43,9 +43,9 @@ class PostList extends Component {
             ))}
         </ul>
       }
-      <div className="post-create">
+        <div className="post-create-button">
           <Link to={"/post/create"}>
-            <FontAwesomeIcon className="post-create" icon={faPlus} />
+            <FontAwesomeIcon icon={faPlus} />
           </Link>
       </div>
     </div>

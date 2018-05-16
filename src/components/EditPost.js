@@ -12,24 +12,24 @@ class EditPost extends Component {
     const title = this.refs.title.value;
     const body = this.refs.body.value;
     this.props.editPost({ id, title, body });
-    this.props.history.push("/");
+    this.props.history.goBack();
   }
 
   render() {
     const { postId, posts } = this.props;
     const post = posts && posts.find(post => post.id === postId);
-    return <div className="create-post">
-    {post &&
-        <form ref="postForm" className="post-form" onSubmit={e => this.handleSubmit(e)}>
-          <input type="text" ref="id" defaultValue={post.id} hidden />
-          <input type="text" ref="title" defaultValue={post.title} />
-          <input type="text" ref="body" defaultValue={post.body} />
-          <input type="text" ref="author" value={post.author} readOnly/>
-          <input type="text" ref="category" value={post.category} readOnly/>
-          <input type="submit" />
-        </form>
-    }
-      </div>
+    return <div className="post-create">
+        {post && <form ref="postForm" className="post-create-form" onSubmit={e => this.handleSubmit(e)}>
+            <input type="text" ref="id" defaultValue={post.id} hidden />
+            <div className="post-create-author-title">
+              <input className="post-create-author" type="text" ref="author" value={post.author} readOnly />
+              <input className="post-create-title" type="text" ref="title" defaultValue={post.title} />
+              <input className="post-create-author" type="text" ref="category" value={post.category} readOnly />
+            </div>
+            <textarea className="post-create-body" ref="body" defaultValue={post.body} />
+            <input className="post-create-submit" type="submit" />
+          </form>}
+      </div>;
   }
 }
 
