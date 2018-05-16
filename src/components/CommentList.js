@@ -61,7 +61,7 @@ class CommentList extends Component {
       return <form key={comment.id} ref="commentForm" className="comment-form" onSubmit={e => this.handleClick(e)}>
           <input type="text" ref="id" defaultValue={comment.id} hidden />
 
-          <input className="comment-form-author" type="text" ref="author" defaultValue={comment.author} />
+          <input className="comment-form-author" type="text" ref="author" defaultValue={comment.author} readOnly/>
           <input className="comment-form-body" type= "text" ref="body" defaultValue={comment.body} />
           <input type="submit" hidden />
         </form>;
@@ -83,7 +83,6 @@ class CommentList extends Component {
   }
 
   handleClick(e) {
-    console.log("handleClick ", e);
     e.preventDefault();
     const commentId  = this.refs.id.value;
     const body = this.refs.body.value;
