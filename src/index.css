@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 20px;
 }
 
 h1 {
@@ -11,6 +12,11 @@ h1 {
 
 .header {
   text-align: center;
+}
+
+.post {
+  display: flex;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .post-list {
@@ -23,7 +29,6 @@ h1 {
   width: 500px;
   height: 150px;
   margin: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .post-title {
@@ -36,7 +41,7 @@ h1 {
 
 .post-author {
   position: absolute;
-  top: 50px;
+  top: 28px;
   left: 10px;
 }
 
@@ -66,22 +71,22 @@ h1 {
 
 .post-comments {
   position: absolute;
-  right: 70px;
-  bottom: 25px;
+  right: 19px;
+  bottom: 15px;
   font-size: 20px;
 }
 
 .post-comments-count {
   position: absolute;
-  right: 55px;
-  bottom: 12px;
+  right: 5px;
+  bottom: 2px;
   font-size: 14px;
 }
 .post-upvote {
   position: absolute;
   cursor: pointer;
-  right: 7px;
-  bottom: 24px;
+  right: 86px;
+  top: 1px;
   font-size: 20px;
 }
 
@@ -95,15 +100,15 @@ h1 {
 .post-downvote {
   position: absolute;
   cursor: pointer;
-  right: 7px;
-  bottom: 1px;
+  right: 58px;
+  top: 6px;
   font-size: 20px;
 }
 
 .post-edit {
   position: absolute;
   cursor: pointer;
-  right: 30px;
+  right: 26px;
   top: 1px;
   font-size: 20px;
 }
@@ -115,82 +120,148 @@ h1 {
   top: 1px;
   font-size: 20px;
 }
+
+.post-details {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin: 10px;
+  padding: 10px;
+}
+
 .post-details-item {
-  margin: auto;
+  /* margin: auto;
   position: relative;
   width: 1000px;
-  height: 500px;
+  height: 500px; */
   /* margin: 5px; */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.post-details-title {
-  position: absolute;
-  top: 5px;
-  left: 15px;
-  font-size: 20px;
-  text-align: center;
-}
-
-.post-details-author {
-  position: absolute;
-  top: 20px;
-  left: 15px;
-}
-.post-details-body {
-  position: absolute;
-  top: 70px;
-  left: 25px;
-  font-size: 30px;
-  text-align: center;
+  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+  display: flex;
+  margin: 10px;
 }
 
 .post-details-category {
-  position: absolute;
+  /* position: absolute; */
   width: 60px;
   height: 60px;
-  bottom: 0px;
-  left: 0px;
+  /* bottom: 0px;
+  left: 0px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50px;
   font-size: 0;
 }
 
-.post-details-comments {
-  position: absolute;
-  right: 70px;
-  bottom: 25px;
-  font-size: 20px;
+.post-details-title {
+  /* position: absolute;
+  top: 5px;
+  left: 15px; */
+  width: 500px;
+  height: 100px;
+  font-size: 26px;
+  /* text-align: center; */
 }
 
-.post-details-comments-count {
-  position: absolute;
-  right: 55px;
-  bottom: 12px;
-  font-size: 14px;
+.post-details-author {
+  /* position: absolute;
+  top: 20px;
+  left: 15px; */
 }
+
 .post-details-upvote {
-  position: absolute;
+  /* position: absolute; */
   cursor: pointer;
-  right: 7px;
-  bottom: 24px;
-  font-size: 20px;
-}
-
-.post-details-votes-count {
-  position: absolute;
-  right: 20px;
-  bottom: 12px;
-  font-size: 14px;
+  /* right: 90px;
+  top: 1px; */
+  padding: 10px;
+  font-size: 24px;
+  margin-left: auto;
 }
 
 .post-details-downvote {
-  position: absolute;
+  /* position: absolute; */
   cursor: pointer;
-  right: 7px;
-  bottom: 1px;
-  font-size: 20px;
+  /* right: 60px;
+  top: 4px; */
+  font-size: 24px;
+  padding: 10px;
+
+}
+
+.post-details-edit {
+  /* position: absolute; */
+  cursor: pointer;
+  /* right:30px;
+  top: 1px; */
+  padding: 10px;
+  font-size: 24px;
+}
+
+.post-details-delete {
+  /* position: absolute; */
+  cursor: pointer;
+  /* right: 4px;
+  top: 1px; */
+  font-size: 24px;
+  padding: 10px;
+}
+
+.post-details-body {
+  margin: 10px;
+  /* position: absolute;
+  top: 70px;
+  left: 25px; */
+  font-size: 30px;
+  /* text-align: center; */
+}
+
+.post-details-comments {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.post-details-comments-icon {
+  font-size: 30px;
+}
+
+.post-details-comments-count {
+  font-size: 26px;
+  margin-left: 10px;
+}
+
+.post-details-votes-count {
+  font-size: 14px;
+}
+
+/* .post-comments-list {
+  margin: auto;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+} */
+
+.post-comment-upvote {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+  margin-left: auto;
+}
+
+.post-comment-downvote {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.post-comment-edit {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.post-comment-delete {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
 }
 
 .post-create {
@@ -210,36 +281,54 @@ h1 {
   margin: 10px;
 }
 
+.comments {
+  /* position: absolute;
+  right: 40px; */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  padding-left: 10px;
+  margin-left: 20px;
+}
+
 .comment {
+  display: flex;
+  /* position: relative; */
   border-bottom: 1px solid lightgrey;
   padding: 0.5rem 0;
 }
-.comment p {
-  font-size: 1.2rem;
-  margin: 0;
+
+.comment-body {
+  font-size: 24px;
+  margin-right: 10px;
+  width: 500px;
 }
 
-.comment strong {
+.comment-author {
   color: blue;
   margin-right: 5px;
+  width: 150px;
+  font-size: 24px;
 }
 
 .comment:hover .remove-comment {
   opacity: 1;
 }
 
-.comments {
-  position: absolute;
-  right: 40px;
-}
-.remove-comment {
-  background: none;
-  border: 0;
-  line-height: 1;
-  opacity: 0;
-  font-size: 20px;
+.comment-form input {
 }
 
-.remove-comment:hover {
-  color: red;
+.comment-form-author {
+  color: blue;
+  margin-right: 5px;
+  width: 150px;
+  font-size: 24px;
 }
+
+.comment-form-body {
+  margin-right: 5px;
+  width: 1000px;
+  font-size: 24px;
+}
+
+

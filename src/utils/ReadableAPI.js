@@ -67,10 +67,10 @@ export const upVoteForComment = commentId =>
 export const downVoteForComment = commentId =>
   voteForComment(commentId, "downVote");
 
-export const editComment = comment =>
-  fetchPut(`${api}/comments/${comment}`, {
+export const editComment = (commentId, commentBody) =>
+  fetchPut(`${api}/comments/${commentId}`, {
     timestamp: Date.now(),
-    body: comment.body
+    body: commentBody
   });
 
 export const deleteComment = commentId =>

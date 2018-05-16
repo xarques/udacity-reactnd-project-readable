@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-// import { bindActionCreators } from 'redux';
-
-// import { connect } from 'react-redux';
-//import PropTypes from 'prop-types';
-// import { Route, Switch, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faComment from "@fortawesome/fontawesome-free-solid/faCommentAlt";
-//import faHeart from '@fortawesome/fontawesome-free-solid/faHeart';
 import faThumbsDown from "@fortawesome/fontawesome-free-solid/faThumbsDown";
 import faThumbsUp from "@fortawesome/fontawesome-free-solid/faThumbsUp";
+import faTrash from "@fortawesome/fontawesome-free-solid/faTrash";
+import faEdit from "@fortawesome/fontawesome-free-solid/faEdit";
 
 import CommentList from "./CommentList";
 
@@ -19,6 +16,13 @@ class PostDetails extends Component {
     fetchPost(postId);
     fetchComments(postId);
   };
+
+  handleDelete(post) {
+    this.props.deletePost(post.id);
+    // Don't know how to remove the current root from the history
+    // this.props.history.replace(`/${post.category}/${post.id}`, "/");
+    this.props.history.push('/');
+  }
 
   render() {
     const {
@@ -30,28 +34,44 @@ class PostDetails extends Component {
     } = this.props;
     const postComments = comments[postId] ? comments[postId] : [];
     const post = posts && posts.find(post => post.id === postId);
-    console.log("PostDetails props ", this.props);
-    console.log("PostDetails comments ", comments);
-    return <div className="my-post">
-        {post && <div className="post-details-item" key={post.id}>
-            <div className="post-details-title">{post.title}</div>
-            <p className="post-details-author">
-              by <strong>{post.author}</strong>
-            </p>
-            <div className="post-details-body">{post.body}</div>
-            <p className={`post-category post-category-${post.category}`}>
-              T
-            </p>
-            <FontAwesomeIcon className="post-details-comments" icon={faComment} />
-            <p className="post-comments-count">{post.commentCount}</p>
-            <div onClick={e => fetchUpVotePost(post.id)} className="post-details-upvote">
-              <FontAwesomeIcon className="post-details-upvote" icon={faThumbsUp} />
+    return <div className="post-details">
+        {post && <div>
+            <div className="post-details-item" key={post.id}>
+              <p className={`post-details-category post-category-${post.category}`}>
+                T
+              </p>
+              <div className="post-details-title">
+                <p>{post.title}</p>
+                <p className="post-details-author">
+                  {post.voteScore} vote{Math.abs(post.voteScore) > 1 ? "s" : ""} - Submitted by <strong
+                  >
+                    {post.author}
+                  </strong>
+                </p>
+              </div>
+              <div onClick={e => fetchUpVotePost(post.id)} className="post-details-upvote">
+                <FontAwesomeIcon icon={faThumbsUp} />
+              </div>
+              <div onClick={e => fetchDownVotePost(post.id)} className="post-details-downvote">
+                <FontAwesomeIcon icon={faThumbsDown} />
+              </div>
+              <Link to={`/${post.category}/${post.id}/edit`}>
+                <FontAwesomeIcon className="post-details-edit" icon={faEdit} />
+              </Link>
+              <div onClick={e => this.handleDelete(post)} className="post-details-delete">
+                <FontAwesomeIcon icon={faTrash} />
+              </div>
             </div>
-            <p className="post-details-votes-count">{post.voteScore}</p>
-            <div onClick={e => fetchDownVotePost(post.id)} className="post-details-downvote">
-              <FontAwesomeIcon className="post-details-downvote" icon={faThumbsDown} />
+            <div className="post-details-body">
+              <p>{post.body}</p>
             </div>
-            <CommentList postComments={postComments} {...this.props} />
+            <div className="post-comments-list">
+              <CommentList postComments={postComments} {...this.props} />
+            </div>
+            <div className="post-details-comments">
+              <FontAwesomeIcon className="post-details-comments-icon" icon={faComment} />
+              <span className="post-details-comments-count">{post.commentCount}</span>
+            </div>
           </div>}
       </div>;
   }
