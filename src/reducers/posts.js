@@ -24,7 +24,7 @@ export const posts = (state = [], action) => {
   switch (action.type) {
     case GET_POSTS:
       return posts;
-    case ADD_POST:
+    case ADD_POST: {
       const [...newState] = state;
       // Post already exists ?
       const postIndex = newState.findIndex(p => p.id === post.id);
@@ -37,6 +37,7 @@ export const posts = (state = [], action) => {
         newState.push(post);
       }
       return newState;
+    }
     case DELETE_POST:
       return state.filter(p => p.id !== postId);
     case UPDATE_POST:
