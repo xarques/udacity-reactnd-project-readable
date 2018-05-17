@@ -12,11 +12,7 @@ class PostList extends Component {
   }
 
   render() {
-    const {
-      posts,
-      category,
-      categories
-    } = this.props;
+    const { posts, category, categories } = this.props;
     return (
       <div className="my-posts">
         {categories &&
