@@ -67,13 +67,13 @@ class CommentList extends Component {
           <input type="text" ref="id" defaultValue={comment.id} hidden />
 
           <input className="comment-form-author" type="text" ref="author" defaultValue={comment.author} readOnly />
-          <input className="comment-form-body" type="text" ref="body" defaultValue={comment.body} />
+          <input className="comment-form-body" type="text" ref="body" defaultValue={comment.body} required/>
           <input type="submit" hidden />
         </form>;
     }
     return <form ref="commentForm" className="comment-form" onSubmit={e => this.handleSubmit(e)}>
-        <input className="comment-form-author" type="text" ref="author" placeholder="author" />
-        <input className="comment-form-body" type="textarea" ref="body" placeholder="Your comment" />
+        <input className="comment-form-author" type="text" ref="author" placeholder="author" required/>
+        <input className="comment-form-body" type="textarea" ref="body" placeholder="Your comment" required/>
         <input type="submit" hidden />
       </form>;
   }

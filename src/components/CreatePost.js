@@ -26,9 +26,9 @@ class CreatePost extends Component {
     return <div className="post-create">
         <form ref="postForm" className="post-create-form" onSubmit={e => this.handleSubmit(e)}>
           <div className="post-create-author-title">
-            <input className="post-create-author" type="text" ref="author" placeholder="author" />
-            <input className="post-create-title" type="text" ref="title" placeholder="title" />
-            {categories && <select className="categories-list" ref="category">
+          <input className="post-create-author" type="text" ref="author" placeholder="author" required/>
+          <input className="post-create-title" type="text" ref="title" placeholder="title" required/>
+          {categories && <select className="categories-list" ref="category" required>
                 {categories.map((category) => (
                   <option
                     key={category.name}
@@ -40,7 +40,7 @@ class CreatePost extends Component {
                 ))}
               </select>}
           </div>
-          <textarea className="post-create-body" ref="body" placeholder="Your post" />
+        <textarea className="post-create-body" ref="body" placeholder="Your post" required/>
           <input className="post-create-submit" type="submit" />
         </form>
       </div>;
