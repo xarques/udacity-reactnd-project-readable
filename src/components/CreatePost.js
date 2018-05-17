@@ -11,8 +11,14 @@ class CreatePost extends Component {
     const body = this.refs.body.value;
     const author = this.refs.author.value;
     const category = this.refs.category.value;
-    this.props.addPost({ title, body, author, category });
-    this.props.history.push("/");
+    this.props.addPost({ title, body, author, category })
+      .then(res => {
+        // success callback here
+        this.props.history.push("/");
+      }, error => {
+        console.log("addPost Error", error.message);
+        // error callback here
+      });
   }
 
   render() {
