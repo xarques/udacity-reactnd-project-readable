@@ -2,11 +2,21 @@ import {
   ADD_POST,
   GET_POSTS,
   UPDATE_POST,
-  DELETE_POST
+  DELETE_POST,
+  SORT_POSTS
 } from "../actions";
 
 const updatePost = (post, posts) =>
   posts.map(p => (p.id === post.id ? post : p));
+
+export const sort = (state = "BY_SCORE_DESC", action) => {
+  switch (action.type) {
+    case SORT_POSTS:
+      return action.sortType;
+    default:
+      return state;
+  }
+}
 
 export const posts = (state = [], action) => {
   const { posts, post, postId } = action;

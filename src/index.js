@@ -12,8 +12,11 @@ import thunk from 'redux-thunk';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const defaultState = {
-  posts: []
-}
+  posts: [],
+  comments: {},
+  categories: [],
+};
+
 const store = createStore(
   reducer,
   defaultState,

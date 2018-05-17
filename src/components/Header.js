@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
+import SortMenu from '../containers/SortMenu'
+
 class Header extends Component {
   render() {
     return (
@@ -8,6 +10,7 @@ class Header extends Component {
         <Link to={"/"}>
           <h1>Readable application</h1>
         </Link>
+        <SortMenu />
       </div>
     )
   }

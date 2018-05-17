@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import PropTypes from 'prop-types';
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faPlus from "@fortawesome/fontawesome-free-solid/faPlus";
 
@@ -12,19 +11,12 @@ class PostList extends Component {
     this.props.fetchCategories();
   }
 
-  filterPosts(posts, category) {
-    if (!category) return posts;
-    return posts.filter(post => post.category === category);
-  }
-
-
   render() {
     const {
       posts,
       category,
       categories
     } = this.props;
-    const filteredPosts = this.filterPosts(posts, category);
     return (
       <div className="my-posts">
         {categories &&
@@ -34,7 +26,7 @@ class PostList extends Component {
         }
         {posts &&
           <ul className="post-list">
-            {filteredPosts.map(post => (
+            {posts.map(post => (
               <Post
                 {...this.props}
                 key={post.id}
