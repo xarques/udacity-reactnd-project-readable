@@ -8,6 +8,7 @@ The focus of this project is on writing functional React code using Redux.
 
 ## Project objectives
 This application allows users to create post for a given category.
+
 Also, the users can upvote, downvote, editor delete posts and comments
 
 ## Installation
@@ -60,8 +61,10 @@ $ yarn build
 
 ## App Functionality
 This application allows users to create post for a given category.
-Also, the users can upvote, downvote, editor delete posts and comments
-THe user can also sort posts based on post date or vote score
+
+Also, the users can upvote, downvote, editor delete posts and comments.
+
+The user can also sort posts based on post date or vote score
 
 ## Create React
 
