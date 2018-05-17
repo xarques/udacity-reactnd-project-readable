@@ -29,9 +29,9 @@ class CreatePost extends Component {
             <input className="post-create-author" type="text" ref="author" placeholder="author" />
             <input className="post-create-title" type="text" ref="title" placeholder="title" />
             {categories && <select className="categories-list" ref="category">
-                {categories.map((category, i) => (
+                {categories.map((category) => (
                   <option
-                    key={i}
+                    key={category.name}
                     value={category.name}
                     className="category-option"
                   >
