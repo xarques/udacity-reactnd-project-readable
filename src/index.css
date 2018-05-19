@@ -179,6 +179,7 @@ a {
 .post-delete {
   cursor: pointer;
   font-size: 20px;
+  color: red;
 }
 
 .post-details {
