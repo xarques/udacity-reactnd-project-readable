@@ -10,13 +10,15 @@ h1 {
   color: blue;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
 .header {
   display: flex;
   text-align: center;
-}
-.header a {
-  cursor: pointer;
-  text-decoration: none;
 }
 
 .sort-menu-container {
@@ -52,50 +54,80 @@ h1 {
   display: none;
 }
 
-.post {
-  display: flex;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
 .post-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post {
+  /* display: flex; */
+  margin: 5px auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 3px;
 }
 
 .post-item {
-  position: relative;
-  width: 500px;
-  height: 150px;
+  height: 200px;
+  width: 1000px;
+  margin: 0px;
+  display: flex;
+}
+
+.post-vote-container {
+  width: 60px;
+  border-color: black;
+  background-color: rgb(240, 240, 240);
+  /* color: rgb(135, 138, 140); */
+  /* fill: rgb(135, 138, 140); */
+  /* border: 2px solid red; */
+}
+
+.post-vote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-upvote {
+  cursor: pointer;
+  font-size: 30px;
+  color: rgb(100, 100, 100);
+}
+
+.post-votes-count {
+  font-size: 14px;
+}
+
+.post-downvote {
+  cursor: pointer;
+  font-size: 30px;
+  color: rgb(100, 100, 100);
+}
+
+.post-body-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* width: 1000px; */
+  background-color: rgba(255, 255, 255, 0.0);
   margin: 5px;
 }
 
-.post-title {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 20px;
-  text-align: center;
-}
-
-.post-author {
-  position: absolute;
-  top: 28px;
-  left: 10px;
-}
-
-.category-active {
-  color: red;
+.post-header {
+  display: flex;
 }
 
 .post-category {
-  position: absolute;
+  padding:0;
+  margin-top: -20px;
+  margin-left: -10px;
   width: 60px;
   height: 60px;
-  bottom: 0px;
-  left: 0px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50px;
+  background-size: 30px;
   font-size: 0;
 }
 
@@ -110,56 +142,42 @@ h1 {
 .post-category-redux {
   background-image: url("./icons/redux-icon.svg");
 }
+.post-title {
+  font-size: 30px;
+  text-align: left;
+}
+
+.post-author {
+  font-size: 20px;
+}
+
+.category-active {
+  color: red;
+}
 
 .post-comments {
-  position: absolute;
-  right: 19px;
-  bottom: 15px;
+  display: flex;
+  font-size: 20px;
+  color: rgb(100, 100, 100);
+}
+.post-comments-icon {
   font-size: 20px;
 }
 
 .post-comments-count {
-  position: absolute;
-  right: 5px;
-  bottom: 2px;
-  font-size: 14px;
-}
-.post-upvote {
-  position: absolute;
-  cursor: pointer;
-  right: 86px;
-  top: 1px;
-  font-size: 20px;
-}
-
-.post-votes-count {
-  position: absolute;
-  right: 20px;
-  bottom: 12px;
-  font-size: 14px;
-}
-
-.post-downvote {
-  position: absolute;
-  cursor: pointer;
-  right: 58px;
-  top: 6px;
-  font-size: 20px;
+  font-size: 16px;
+  margin-left: 5px;
 }
 
 .post-edit {
-  position: absolute;
   cursor: pointer;
-  right: 26px;
-  top: 1px;
   font-size: 20px;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .post-delete {
-  position: absolute;
   cursor: pointer;
-  right: 3px;
-  top: 1px;
   font-size: 20px;
 }
 

@@ -21,7 +21,7 @@ class PostList extends Component {
           </ul>
         }
         {posts &&
-          <ul className="post-list">
+          <div className="post-list">
             {posts.map(post => (
               <Post
                 {...this.props}
@@ -29,7 +29,7 @@ class PostList extends Component {
                 post={post}
               />
             ))}
-        </ul>
+        </div>
       }
         <div className="post-create-button">
           <Link to={"/post/create"}>
