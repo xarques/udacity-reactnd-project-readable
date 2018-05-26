@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import faThumbsDown from "@fortawesome/fontawesome-free-solid/faThumbsDown";
-import faThumbsUp from "@fortawesome/fontawesome-free-solid/faThumbsUp";
-import faTrash from "@fortawesome/fontawesome-free-solid/faTrash";
-import faEdit from "@fortawesome/fontawesome-free-solid/faEdit";
+import faTrash from "@fortawesome/fontawesome-free-solid/faTimes";
+import faEdit from "@fortawesome/fontawesome-free-solid/faPencilAlt";
+import faThumbsDown from "@fortawesome/fontawesome-free-solid/faCaretDown";
+import faThumbsUp from "@fortawesome/fontawesome-free-solid/faCaretUp";
+
+import { getPostedTime } from "../utils/Helpers";
 
 class CommentList extends Component {
   state = {
     editIndex: -1
   };
 
-  handleSubmit(e) {
+  handleCreate(e) {
     e.preventDefault();
     const { postId } = this.props;
     const author = this.refs.author.value;
@@ -20,7 +22,7 @@ class CommentList extends Component {
     this.refs.commentForm.reset();
   }
 
-  handleClick(e) {
+  handleUpdate(e) {
     e.preventDefault();
     const commentId = this.refs.id.value;
     const body = this.refs.body.value;
@@ -36,45 +38,55 @@ class CommentList extends Component {
   }
 
   renderComment(comment, i) {
+    const { fetchUpVoteComment, fetchDownVoteComment } = this.props;
     return <div className="comment" key={comment.id}>
-        <p className="comment-author">
-          <strong>{comment.author}</strong>
-          <br />
-          <span className="post-comment-votes-count">
-            {" "}
-            {comment.voteScore} vote{Math.abs(comment.voteScore) > 1 ? "s" : ""}
-          </span>
-        </p>
-        <p className="comment-body">{comment.body}</p>
-        <div onClick={e => this.props.fetchUpVoteComment(comment.id)} className="post-comment-upvote">
-          <FontAwesomeIcon icon={faThumbsUp} />
+        <div className="comment-vote-container">
+          <div className="comment-vote">
+            <div onClick={e => fetchUpVoteComment(comment.id)} className="comment-upvote">
+              <FontAwesomeIcon icon={faThumbsUp} />
+            </div>
+            <div>{comment.voteScore} </div>
+            <div onClick={e => fetchDownVoteComment(comment.id)} className="comment-downvote">
+              <FontAwesomeIcon icon={faThumbsDown} />
+            </div>
+          </div>
         </div>
-        <div onClick={e => this.props.fetchDownVoteComment(comment.id)} className="post-comment-downvote">
-          <FontAwesomeIcon icon={faThumbsDown} />
-        </div>
-        <div onClick={e => this.handleEditComment(i)} className="post-comment-edit">
-          <FontAwesomeIcon icon={faEdit} />
-        </div>
-        <div onClick={e => this.props.deleteComment(comment.parentId, comment.id)} className="post-comment-delete">
-          <FontAwesomeIcon icon={faTrash} />
+        <div className="comment-body-container">
+          <div className="comment-header">
+            <div className="comment-author">
+              Commented by <strong> {comment.author} </strong> {getPostedTime(comment.timestamp)}
+            </div>
+            <div onClick={e => this.handleEditComment(i)} className="comment-edit">
+              <FontAwesomeIcon icon={faEdit} />
+            </div>
+            <div onClick={e => this.props.deleteComment(comment.parentId, comment.id)} className="comment-delete">
+              <FontAwesomeIcon icon={faTrash} />
+            </div>
+          </div>
+          <div className="comment-body">{comment.body}</div>
         </div>
       </div>;
   }
 
   renderEditComment(comment) {
     if (comment) {
-      return <form key={comment.id} ref="commentForm" className="comment-form" onSubmit={e => this.handleClick(e)}>
+      return <form key={comment.id} className="comment-form" ref="commentForm" onSubmit={e => this.handleUpdate(e)}>
           <input type="text" ref="id" defaultValue={comment.id} hidden />
-
-          <input className="comment-form-author" type="text" ref="author" defaultValue={comment.author} readOnly />
-          <input className="comment-form-body" type="text" ref="body" defaultValue={comment.body} required/>
-          <input type="submit" hidden />
+          <div>
+            <label htmlFor="author">Comment from </label>
+            <input className="comment-form-author" type="text" ref="author" defaultValue={comment.author} readOnly />
+          </div>
+          <textarea className="comment-form-body" type="text" ref="body" defaultValue={comment.body} required />
+          <input className="comment-form-submit" type="submit" value="Modify Comment" />
         </form>;
     }
-    return <form ref="commentForm" className="comment-form" onSubmit={e => this.handleSubmit(e)}>
-        <input className="comment-form-author" type="text" ref="author" placeholder="author" required/>
-        <input className="comment-form-body" type="textarea" ref="body" placeholder="Your comment" required/>
-        <input type="submit" hidden />
+    return <form ref="commentForm" className="comment-form" onSubmit={e => this.handleCreate(e)}>
+        <div>
+          <label htmlFor="author">Comment as </label>
+          <input className="comment-form-author" type="text" ref="author" placeholder="author" required/>
+        </div>
+        <textarea className="comment-form-body" ref="body" placeholder="What are your thoughts ?" required/>
+        <input className="comment-form-submit" type="submit" value="Comment"/>
       </form>;
   }
 
@@ -83,6 +95,7 @@ class CommentList extends Component {
     const { editIndex } = this.state;
     return (
       <div className="comments">
+        {this.renderEditComment()}
         {postComments &&
           postComments.map(
             (comment, i) =>
@@ -90,7 +103,6 @@ class CommentList extends Component {
                 ? this.renderEditComment(comment, i)
                 : this.renderComment(comment, i)
           )}
-        {this.renderEditComment()}
       </div>
     );
   }

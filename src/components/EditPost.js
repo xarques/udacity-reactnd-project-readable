@@ -18,17 +18,19 @@ class EditPost extends Component {
   render() {
     const { postId, posts } = this.props;
     const post = posts && posts.find(post => post.id === postId);
-    return <div className="post-create">
+    return <div>
         {post && <form ref="postForm" className="post-create-form" onSubmit={e => this.handleSubmit(e)}>
+          <div className="post-create-author-title">
             <input type="text" ref="id" defaultValue={post.id} hidden />
             <div className="post-create-author-title">
               <input className="post-create-author" type="text" ref="author" value={post.author} readOnly />
               <input className="post-create-title" type="text" ref="title" defaultValue={post.title} />
               <input className="post-create-author" type="text" ref="category" value={post.category} readOnly />
             </div>
-            <textarea className="post-create-body" ref="body" defaultValue={post.body} />
-            <input className="post-create-submit" type="submit" />
-          </form>}
+          </div>
+          <textarea className="post-create-body" ref="body" defaultValue={post.body} />
+          <input className="button-form-submit" type="submit" value="Update Post"/>
+        </form>}
       </div>;
   }
 }

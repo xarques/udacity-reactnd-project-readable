@@ -14,29 +14,31 @@ class PostList extends Component {
   render() {
     const { posts, category, categories } = this.props;
     return (
-      <div className="my-posts">
-        {categories &&
-          <ul className="categories-list">
-          {categories.map((c,i) => <li key={c.name} className="category-link"><Link className={(!category && i === 0) || (c.name === category) ? "category-active": ""} to={`/${c.path}`}>{c.name}</Link></li>)}
-          </ul>
+      <div className="container">
+        <div className="my-posts">
+          {categories &&
+            <ul className="categories-list">
+            {categories.map((c,i) => <li key={c.name} className="category-link"><Link className={(!category && i === 0) || (c.name === category) ? "category-active": ""} to={`/${c.path}`}>{c.name}</Link></li>)}
+            </ul>
+          }
+          {posts &&
+            <div className="post-list">
+              {posts.map(post => (
+                <Post
+                  {...this.props}
+                  key={post.id}
+                  post={post}
+                />
+              ))}
+          </div>
         }
-        {posts &&
-          <div className="post-list">
-            {posts.map(post => (
-              <Post
-                {...this.props}
-                key={post.id}
-                post={post}
-              />
-            ))}
+          <div className="post-create-button">
+            <Link to={"/post/create"}>
+              <FontAwesomeIcon icon={faPlus} />
+            </Link>
+          </div>
         </div>
-      }
-        <div className="post-create-button">
-          <Link to={"/post/create"}>
-            <FontAwesomeIcon icon={faPlus} />
-          </Link>
       </div>
-    </div>
     );
   }
 }
